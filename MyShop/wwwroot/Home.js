@@ -100,4 +100,4 @@ const checkPassword=async()=>{
 const viewLevel = (passwordlevel) => {
         const password = document.querySelector(".levelPassword")
         password.value = passwordlevel
-    }
+    }//lkjhgfdghjnhgjk,kjgf
