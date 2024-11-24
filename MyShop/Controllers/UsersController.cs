@@ -70,7 +70,7 @@ namespace MyShop.Controllers
         [HttpPost]
         public ActionResult<User> Post([FromBody] User user)
         {
-            int passward = _UserService.CheckPasword(user.Password);
+            int passward = _UserService.CheckPasword(user.Password);//not here, in services
             if (passward >= 2)
             {
                 User newUser = _UserService.CreateUser(user);
@@ -90,7 +90,7 @@ namespace MyShop.Controllers
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] User userToUpdate)
         {   
-            int passward = _UserService.CheckPasword(userToUpdate.Password);
+            int passward = _UserService.CheckPasword(userToUpdate.Password);//not here, in services
             if (passward >= 2)
             {
                 _UserService.UpDateUser(id, userToUpdate);

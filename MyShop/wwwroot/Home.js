@@ -24,6 +24,8 @@ const newRegister = async () => {
             },
             body:await JSON.stringify(newUser)
         });
+        //if status==400
+        //week password
         if (!responsePost.ok) { 
             throw new error(`http error: status${responsePost}`)
     }
