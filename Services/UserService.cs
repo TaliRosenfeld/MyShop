@@ -21,6 +21,7 @@ namespace Services
         
         public User CreateUser(User user)
         {
+            //check password strength
             return _UserRepository.CreateUser(user);
         }
         public User GetUserToLogin(string email, string password)
@@ -29,6 +30,7 @@ namespace Services
         }
         public void UpDateUser(int id, User userToUpdate)
         {
+            //check password strength
             _UserRepository.UpDateUser(id, userToUpdate);
         }
         public int CheckPasword(string password)

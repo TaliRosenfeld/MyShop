@@ -18,6 +18,8 @@ const changeUser = async () => {
             },
             body: await JSON.stringify(DetaisChangeUser)
         });
+        //if status==400
+        //week password
         if (!responsePost.ok) {
             throw new error(`http error: status${responsePost.status}`)//f
         }
