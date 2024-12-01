@@ -19,17 +19,17 @@ namespace Services
             _UserRepository = UserRepository;
         }
         
-        public User CreateUser(User user)
+        public async Task<User> CreateUser(User user)
         {
-            return _UserRepository.CreateUser(user);
+            return await _UserRepository.CreateUser(user);
         }
-        public User GetUserToLogin(string email, string password)
+        public async  Task<User> GetUserToLogin(string email, string password)
         {
-            return _UserRepository.GetUserToLogin(email, password);
+            return await _UserRepository.GetUserToLogin(email, password);
         }
-        public void UpDateUser(int id, User userToUpdate)
+        public async Task UpDateUser(int id, User userToUpdate)
         {
-            _UserRepository.UpDateUser(id, userToUpdate);
+            await _UserRepository.UpDateUser(id, userToUpdate);
         }
         public int CheckPasword(string password)
         {

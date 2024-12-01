@@ -5,8 +5,8 @@ namespace Services
     public interface IUserService
     {
         int CheckPasword(string password);
-        User CreateUser(User user);
-        User GetUserToLogin(string email, string password);
-        void UpDateUser(int id, User userToUpdate);
+        Task<User> CreateUser(User user);
+        Task<User> GetUserToLogin(string email, string password);
+        Task UpDateUser(int id, User userToUpdate);
     }
 }

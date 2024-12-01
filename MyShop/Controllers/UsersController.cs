@@ -12,14 +12,15 @@ using Microsoft.AspNetCore.Identity;
 
 namespace MyShop.Controllers
 {
-    
+
     [Route("api/[controller]")]
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUserService _UserService ;
-        public UsersController(IUserService UserService) {
-            _UserService =UserService;
+        private readonly IUserService _UserService;
+        public UsersController(IUserService UserService)
+        {
+            _UserService = UserService;
         }
 
         // GET: api/<UsersController>
@@ -51,12 +52,12 @@ namespace MyShop.Controllers
         //        return NoContent();
         //    }
         //}
-        public ActionResult<User> Postlogin([FromQuery] string email, string password)
+        public async Task<ActionResult<User>> Postlogin([FromQuery] string email, string password)
         {
-            User SuccesGetUserToLogin = _UserService.GetUserToLogin(email, password);
+            User SuccesGetUserToLogin =await _UserService.GetUserToLogin(email, password);
             if (SuccesGetUserToLogin != null)
             {
-                return SuccesGetUserToLogin;
+                return Ok(SuccesGetUserToLogin);
             }
 
             else
@@ -68,12 +69,12 @@ namespace MyShop.Controllers
 
         // POST api/<UsersController>
         [HttpPost]
-        public ActionResult<User> Post([FromBody] User user)
+        public async Task<ActionResult<User>> Post([FromBody] User user)
         {
             int passward = _UserService.CheckPasword(user.Password);
             if (passward >= 2)
             {
-                User newUser = _UserService.CreateUser(user);
+                User newUser = await _UserService.CreateUser(user);
                 if (newUser == null)
                     return NoContent();
                 return Ok(newUser);
@@ -82,25 +83,25 @@ namespace MyShop.Controllers
             {
                 return BadRequest();
             }
-            
+
 
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] User userToUpdate)
-        {   
+        public async Task Put(int id, [FromBody] User userToUpdate)
+        {
             int passward = _UserService.CheckPasword(userToUpdate.Password);
             if (passward >= 2)
             {
-                _UserService.UpDateUser(id, userToUpdate);
+                await _UserService.UpDateUser(id, userToUpdate);
                 Ok(userToUpdate);
             }
             else
             {
                 BadRequest();
             }
-           
+
 
         }
 
@@ -115,7 +116,7 @@ namespace MyShop.Controllers
         public ActionResult<int> PostPassord([FromBody] string password)
         {
             int result = _UserService.CheckPasword(password);
-                return result;           
+            return result;
 
         }
     }
