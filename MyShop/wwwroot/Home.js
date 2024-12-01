@@ -94,6 +94,8 @@ const checkPassword=async()=>{
         }
     catch (error) {
         alert(error)
+
+        ///
     }
 }
 
