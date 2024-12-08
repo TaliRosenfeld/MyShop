@@ -3,4 +3,3 @@
 GET {{MyShop_HostAddress}}/weatherforecast/
 Accept: application/json
 
-###
