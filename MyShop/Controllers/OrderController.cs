@@ -27,8 +27,9 @@ namespace MyShop.Controllers
         [HttpPost]
         public async Task<Order> Post([FromBody] Order order)
         {
-           Order newOrder= await _OrderServise.CreateOrder(order);
-            return newOrder;
+           //Order newOrder= 
+                return await _OrderServise.CreateOrder(order);
+            //return newOrder;
         }
     }
 }

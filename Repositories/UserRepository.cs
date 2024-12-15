@@ -34,8 +34,9 @@ namespace Repositories
 
         public async Task<User> GetUserToLogin(string email, string password)
         {
-                User user = await contextDb.Users.FirstOrDefaultAsync(user => user.Email == email && user.Password == password);
-                return user;
+                //User user =
+                return await contextDb.Users.FirstOrDefaultAsync(user => user.Email == email && user.Password == password);
+                //return user;
         }
         public async Task UpDateUser(int id, User userToUpdate)
         {
