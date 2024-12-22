@@ -4,6 +4,6 @@ namespace Services
 {
     public interface ICategoryService
     {
-        Task<List<Category>> GetCategories();
+        Task<IEnumerable<Category>> GetCategories();
     }
 }

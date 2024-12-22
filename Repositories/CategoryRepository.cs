@@ -15,7 +15,7 @@ namespace Repositories
         {
             this.contextDb = contextDb;
         }
-        public async Task<List<Category>> GetCategories()
+        public async Task<IEnumerable<Category>> GetCategories()
         {
             return await contextDb.Categories.ToListAsync();
         }

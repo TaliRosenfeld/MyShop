@@ -23,7 +23,7 @@ namespace Repositories
         }
         public async Task<Order> GetOrderById(int id)
         {
-            Order order = await contextDb.Orders.FirstOrDefaultAsync(order => order.OrderId == id);
+            Order order = await contextDb.Orders.Include(o=>o.User).FirstOrDefaultAsync(order => order.OrderId == id);
             return order;
         }
 

@@ -28,6 +28,7 @@ const newRegister = async () => {
             throw new error(`http error: status${responsePost}`)
     }
         alert("you succed register in succed")
+        window.location.href="Products.html"
         
     }
     catch (error) {
@@ -69,7 +70,7 @@ const NewLogin = async () => {
         existUser.firstName
         sessionStorage.setItem('user', existUser.userId)
         await alert(`hello to ${existUser.firstName}, you can change the datails`)
-        window.location.href = "UserDetails.html"
+        window.location.href = "Products.html"
 
 
     }

@@ -12,6 +12,11 @@ namespace Services
     {
         IOrderRepository _OrderRepository;
 
+        public OrderServise(IOrderRepository OrderRepository)
+        {
+            _OrderRepository = OrderRepository;
+        }
+
         public async Task<Order> CreateOrder(Order order)
         {
             return await _OrderRepository.CreateOrder(order);

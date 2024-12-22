@@ -16,7 +16,7 @@ namespace Services
             _CategoryRepository = CategoryRepository;
         }
 
-        public async Task<List<Category>> GetCategories()
+        public async Task<IEnumerable<Category>> GetCategories()
         {
             return await _CategoryRepository.GetCategories();
 
