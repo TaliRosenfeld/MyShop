@@ -23,7 +23,7 @@ const changeUser = async () => {
         }
         const saveTheChanges = responsePost.json()
         alert("השינויים נשמרו בהצלחה")
-        /*window.location.href("/usedetails")*/
+        window.location.href("/product.html")
     }
     catch (error) {
         alert(`oh,now i get a problem...${error}`)
