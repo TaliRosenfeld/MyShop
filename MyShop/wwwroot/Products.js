@@ -23,6 +23,8 @@ const GetAllKirterion = () => {
 const GetProductList = async () => {
     const kriterion = GetAllKirterion()
     try {
+        //עדיף לשרשר רק את אלה שיש להם ערך אחרת תתקעי אם בעיות של השוואה מול ערכים ריקים
+        //זו גם הצורה המקובלת
         const responsePost = await fetch(`api/Product/?position=${kriterion.position}&skip=${kriterion.skip}&desc=${kriterion.desc}&minPrice=${kriterion.minPrice}&maxPrice=${kriterion.maxPrice}&categoryIds=${kriterion.categoryIds}`, {
             method: 'GET',
             headers: {
