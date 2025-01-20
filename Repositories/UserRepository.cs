@@ -5,19 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
-using Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 
 namespace Repositories
 {
     public class UserRepository : IUserRepository
     {
-
+        private readonly ILogger<UserRepository> _logger;
         _326774742WebApiContext contextDb;
-        public UserRepository(_326774742WebApiContext _326774742WebApiContext)
+        
+        public UserRepository(_326774742WebApiContext _326774742WebApiContext, ILogger<UserRepository> logger)
         {
             contextDb = _326774742WebApiContext;
+            _logger = logger;
         }
         public async Task<User> CreateUser(User newUser)
         {
@@ -34,6 +36,7 @@ namespace Repositories
 
         public async Task<User> GetUserToLogin(string email, string password)
         {
+                _logger.LogCritical($"login attempted with User Name , {email} and password{password}" );
                 User user = await contextDb.Users.FirstOrDefaultAsync(user => user.Email == email && user.Password == password);
                 return user;
         }
@@ -43,6 +46,7 @@ namespace Repositories
             contextDb.Users.Update(userToUpdate);
             await contextDb.SaveChangesAsync();
         }
+       
 
 
     }

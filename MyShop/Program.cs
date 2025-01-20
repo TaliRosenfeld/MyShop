@@ -4,7 +4,8 @@ using Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Entities;
-
+using NLog.Web;
+using MyShop;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -24,13 +25,19 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 //order
 builder.Services.AddScoped<IOrderServise, OrderServise>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
-
+//rating
+builder.Services.AddScoped<IRatingRepository, RatingRepository>();
+builder.Services.AddScoped<IRatingService, RatingService>();
 
 builder.Services.AddDbContext<_326774742WebApiContext>(option => option.UseSqlServer("Server=SRV2\\PUPILS;Database=326774742_web_api;Trusted_Connection=True;TrustServerCertificate=True"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
+builder.Host.UseNLog();
 var app = builder.Build();
+//app.Run(async context =>
+//{
+//    await context.Response.WriteAsync("hello world");
+//});
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -38,7 +45,8 @@ if (app.Environment.IsDevelopment())
 }
 
 // Configure the HTTP request pipeline.
-
+app.UseRatingMiddleware();
+//app.UseRatingMiddleware();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAuthorization();

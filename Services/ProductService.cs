@@ -16,11 +16,16 @@ namespace Services
             _ProductRepository = ProductRepository;
         }
 
-        public async Task<List<Product>> GetProducts(int position, int skip, string? desc, int? minPrice, int? maxPrice, int?[] categoryIds)
+        public async Task<List<Product>> GetProducts(int? position, int? skip, string? desc, int? minPrice, int? maxPrice, int?[] categoryIds)
         {
-            return await _ProductRepository.GetProducts(position, skip, desc,  minPrice,  maxPrice,  categoryIds);
+            return await _ProductRepository.GetProducts(position, skip, desc, minPrice, maxPrice, categoryIds);
 
         }
+        public async Task<Product> getProductById(int id)
+        {
+            return await _ProductRepository.getProductById(id);
+        }
+
     }
 
 }
