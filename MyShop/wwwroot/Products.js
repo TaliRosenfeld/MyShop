@@ -24,7 +24,7 @@ const GetAllKirterion = () => {
 }
 
 const GetProductList = async () => {
-    document.getElementById("PoductList").innerHTML=''
+    document.getElementById("PoductList").innerHTML=''//build url in a different func
     const kriterion = GetAllKirterion()
     let url = `api/product/?position=${kriterion.position}&skip=${kriterion.skip}`
     if (kriterion.nameSearch != '')
@@ -34,7 +34,7 @@ const GetProductList = async () => {
     if (kriterion.maxPrice != '')
         url += `&maxPrice=${kriterion.maxPrice}`
     if (kriterion.categoryIds != '') {
-        for (let i = 0; i < kriterion.categoryIds.length; i++) {
+        for (let i = 0; i < kriterion.categoryIds.length; i++) {//map is nicer
             url += `&categoryIds=${kriterion.categoryIds[i]}`
         }
     }
@@ -138,7 +138,7 @@ const getCategories = async () => {
     }
 }
 const showAllCategories = async (category) => {
-    for (let i = 0; i < category.length; i++) {
+    for (let i = 0; i < category.length; i++) {//map is nicer
         let tmp = document.getElementById("temp-category")
         let clonecategory = tmp.content.cloneNode(true)
         clonecategory.querySelector(".OptionName").textContent = category[i].name
