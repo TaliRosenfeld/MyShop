@@ -25,9 +25,13 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 //order
 builder.Services.AddScoped<IOrderServise, OrderServise>();
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+<<<<<<< HEAD
 //rating
 builder.Services.AddScoped<IRatingRepository, RatingRepository>();
 builder.Services.AddScoped<IRatingService, RatingService>();
+=======
+
+>>>>>>> 231949438d950bb2ad7ef89e7e7437b00f7a5808
 
 builder.Services.AddDbContext<_326774742WebApiContext>(option => option.UseSqlServer("Server=SRV2\\PUPILS;Database=326774742_web_api;Trusted_Connection=True;TrustServerCertificate=True"));
 builder.Services.AddEndpointsApiExplorer();

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ן»¿const products = addEventListener("load", async () => {
     sessionStorage.setItem('Categories', JSON.stringify([]))
     //sessionStorage.setItem('Cart',sessionStorage.getItem('Cart')||JSON.stringify([]))
@@ -41,11 +42,42 @@ const GetProductList = async () => {
        
     try {
         const responseGet = await fetch(url, {
+=======
+addEventListener("load", async () => {
+    GetProductList()
+})
+
+const GetAllKirterion = () => {
+    //const nameSearch = document.querySelector("#nameSearch").value
+    //nameSearch == null ? "" : nameSearch
+    //const minPrice = document.querySelector("#minPrice").value
+    //minPrice == null ? "0" : minPrice
+    //const maxPrice = document.querySelector("#maxPrice").value
+    //maxPrice == null ? "0" : maxPrice
+    nameSearch =""
+    minPrice = 0
+    maxPrice = 0
+    position = 0
+    categoryIds = []
+    desc = "0"
+    skip = 0
+    alert(nameSearch, minPrice, maxPrice)
+    return ({ nameSearch, minPrice, maxPrice,position,categoryIds,desc,skip })
+}
+
+const GetProductList = async () => {
+    const kriterion = GetAllKirterion()
+    try {
+        //עדיף לשרשר רק את אלה שיש להם ערך אחרת תתקעי אם בעיות של השוואה מול ערכים ריקים
+        //זו גם הצורה המקובלת
+        const responsePost = await fetch(`api/Product/?position=${kriterion.position}&skip=${kriterion.skip}&desc=${kriterion.desc}&minPrice=${kriterion.minPrice}&maxPrice=${kriterion.maxPrice}&categoryIds=${kriterion.categoryIds}`, {
+>>>>>>> 231949438d950bb2ad7ef89e7e7437b00f7a5808
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             },
             query: {
+<<<<<<< HEAD
                 nameSearch:kriterion.nameSearch,
                 position: kriterion.minPrice,
                 skip: kriterion.skip,
@@ -61,10 +93,30 @@ const GetProductList = async () => {
     catch (error) {
         alert(`error: ${error}`)
     }
+=======
+                nameSearch=kriterion.nameSearch,
+                position: kriterion.minPrice,
+                skip: kriterion.skip,
+                desc: kriterion.desc,
+                minPrice: kriterion.minPrice,
+                maxPrice: kriterion.maxPrice,
+                categoryIds:kriterion.categoryIds
+            }
+
+        });
+        const dataGet = await responsePost.json()
+        console.log(dataGet)
+        alert(dataGet)
+    }
+    catch (error) {
+        alert(`error: ${error}`)
+    }    
+>>>>>>> 231949438d950bb2ad7ef89e7e7437b00f7a5808
 }
 const filterProducts = () => {
     GetProductList()
 }
+<<<<<<< HEAD
 const showAllProducts = async (products) => {
     for (let i = 0; i < products.length; i++) {
         showOneProduct(products[i]);
@@ -159,3 +211,5 @@ const setCategory = (category) => {
 
 
         
+=======
+>>>>>>> 231949438d950bb2ad7ef89e7e7437b00f7a5808
