@@ -19,7 +19,8 @@ const changeUser = async () => {
             body: await JSON.stringify(DetaisChangeUser)
         });
         if (!responsePost.ok) {
-            throw new error(`http error: status${responsePost.status}`)//f
+            console.log(responsePost)
+            throw new error(`http error: status${responsePost.status}`)
         }
         const saveTheChanges = responsePost.json()
         alert("השינויים נשמרו בהצלחה")

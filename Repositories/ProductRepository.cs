@@ -19,6 +19,7 @@ namespace Repositories
         }
         public async Task<List<Product>> GetProducts(int? position, int? skip, string? desc, int? minPrice, int? maxPrice, int?[] categoryIds)
         {
+
             var query = contextDb.Products.Where(product =>
              (desc == null ? (true) : (product.Description.Contains(desc)))
               && ((minPrice == null) ? (true) : (product.Price >= minPrice))

@@ -58,12 +58,16 @@ const NewLogin = async () => {
                 Password: loginUser.password
             }
         });
+        
+        
         if (!responsePost.ok) {
+            if (responsePost.status == 204) {
+                throw new error(`the user is not found`)
+                //alert("ghghgh")
+                //return
+            };
             throw new error(`http error: status${responsePost}`)
         }
-        if (responsePost.status == 204) {
-            throw new error(`the user is not found`)
-        };
         const existUser = await responsePost.json();
         console.log(existUser.userId);
 

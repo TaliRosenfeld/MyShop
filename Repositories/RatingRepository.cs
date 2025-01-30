@@ -41,7 +41,7 @@ namespace Repositories
                 //cmd.Parameters.Add("@User_ID", SqlDbType.Int).Value = rating.UserId;
 
                 cn.Open();
-                rowsAffected = await cmd.ExecuteNonQueryAsync();
+                //rowsAffected = await cmd.ExecuteNonQueryAsync();
                 cn.Close();
 
             }

@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Entities;
 using NLog.Web;
 using MyShop;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -38,6 +39,7 @@ var app = builder.Build();
 //{
 //    await context.Response.WriteAsync("hello world");
 //});
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -46,6 +48,7 @@ if (app.Environment.IsDevelopment())
 
 // Configure the HTTP request pipeline.
 app.UseRatingMiddleware();
+app.UseErrorHandlingMiddleware();
 //app.UseRatingMiddleware();
 app.UseHttpsRedirection();
 app.UseStaticFiles();

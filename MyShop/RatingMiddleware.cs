@@ -19,14 +19,13 @@ namespace MyShop
 
         public Task Invoke(HttpContext httpContext,IRatingService RatingService)
         {
-
             Rating rating = new()
             {
                 Host = httpContext.Request.Host.ToString(),
-                Method = httpContext.Request.Method,
-                Path = httpContext.Request.Path,
-                Referer = httpContext.Request.Headers.Referer,
-                UserAgent = httpContext.Request.Headers.UserAgent,
+                Method = httpContext.Request.Method.ToString(),
+                Path = httpContext.Request.Path.ToString(),
+                Referer = httpContext.Request.Headers.Referer.ToString(),
+                UserAgent = httpContext.Request.Headers.UserAgent.ToString(),
                 RecordDate = DateTime.Now
             };
             RatingService.addRating(rating);

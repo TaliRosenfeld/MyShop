@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-
 namespace Repositories
 {
     public class UserRepository : IUserRepository
