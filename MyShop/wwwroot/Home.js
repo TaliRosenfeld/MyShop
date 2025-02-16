@@ -17,7 +17,7 @@ const newRegister = async () => {
        return alert("חובה למלא את כל השדות")
     
     try {
-        const responsePost = await fetch("api/users", {
+        const responsePost = await fetch("api/users", {/
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
