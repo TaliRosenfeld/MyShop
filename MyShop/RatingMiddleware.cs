@@ -19,6 +19,8 @@ namespace MyShop
 
         public Task Invoke(HttpContext httpContext,IRatingService RatingService)
         {
+
+
             Rating rating = new()
             {
                 Host = httpContext.Request.Host.ToString(),

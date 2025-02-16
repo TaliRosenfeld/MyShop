@@ -15,9 +15,9 @@ const newRegister = async () => {
     const newUser = getDetaisRegister()
     if (!newUser.firstName || !newUser.lastName || !newUser.password || !newUser.email)
        return alert("חובה למלא את כל השדות")
-    
+ 
     try {
-        const responsePost = await fetch("api/users", {/
+        const responsePost = await fetch("api/users", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
