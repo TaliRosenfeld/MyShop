@@ -12,6 +12,14 @@
     //sessionStorage.setItem("count")
     document.querySelector("#ItemsCountText").innerHTML = getItemsCountText(myCartArr);
 })
+const getItemsCountText = (myCartArr) => {
+    let sum = 0;
+    myCartArr.map((item) => {
+        sum += item.quantity
+    })
+    return sum;
+}
+
 
 const GetAllKirterion = () => {
     const nameSearch = document.querySelector("#nameSearch").value

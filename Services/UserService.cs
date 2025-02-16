@@ -21,11 +21,16 @@ namespace Services
         
         public async Task<User> CreateUser(User user)
         {
-            return await _UserRepository.CreateUser(user);
+            if (CheckPasword(user.Password) >= 2)
+                return await _UserRepository.CreateUser(user);
+            return null;
         }
         public async  Task<User> GetUserToLogin(string email, string password)
         {
-            return await _UserRepository.GetUserToLogin(email, password);
+            if (CheckPasword(password) >= 2)
+                return await _UserRepository.GetUserToLogin(email, password);
+            return null;
+            
         }
         public async Task UpDateUser(int id, User userToUpdate)
         {
@@ -33,8 +38,9 @@ namespace Services
         }
         public int CheckPasword(string password)
         {
-              var result = Zxcvbn.Core.EvaluatePassword(password);
-              return result.Score;
+              var result = Zxcvbn.Core.EvaluatePassword(password);            
+                return result.Score;
+            
         }
     }
 }

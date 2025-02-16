@@ -29,7 +29,13 @@ namespace MyShop.Controllers
             return productDTO;
 
         }
+        public async Task<IEnumerable<productDTO>> Get([FromQuery] int position, [FromQuery] int skip, [FromQuery] string? desc, [FromQuery] int? minPrice, [FromQuery] int? maxPrice, [FromQuery] int?[] categoryIds)
+        {
+            IEnumerable<Product> product = await _ProductService.GetProducts(position, skip, desc, minPrice, maxPrice, categoryIds);
+            IEnumerable<productDTO> productDTO = _mapper.Map<IEnumerable<Product>, IEnumerable<productDTO>>(product);
+            return productDTO;
 
+        }
         [HttpGet("{id}")]
         public async Task<productDTO> Get(int id)
         {
@@ -39,3 +45,6 @@ namespace MyShop.Controllers
         }
     }
 }
+
+    
+

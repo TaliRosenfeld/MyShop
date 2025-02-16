@@ -22,17 +22,22 @@ const newRegister = async () => {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body:await JSON.stringify(newUser)
+            body: await JSON.stringify(newUser)
         });
-        if (!responsePost.ok) { 
-            throw new error(`http error: status${responsePost}`)
-    }
+        if (responsePost.status == 400) {
+            throw new error(`week password`)
+        }
+        if (!responsePost.ok) {
+            throw new error(`you dont succed register:http error  status${responsePost}`)
+        }
+        else { 
         alert("you succed register in succed")
-        window.location.href="Products.html"
+        window.location.href = "Products.html"
+        }
         
     }
     catch (error) {
-        alert("oh,now i get a problem...")
+        alert(`error: ${error}`)
     }
     //console.log(responsePost.JSON)  
 }

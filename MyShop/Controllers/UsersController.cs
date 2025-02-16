@@ -40,7 +40,7 @@ namespace MyShop.Controllers
             }
             else
             {
-                return NoContent();
+                return BadRequest("week password"); ;
             }
         }
 
@@ -48,38 +48,25 @@ namespace MyShop.Controllers
         [HttpPost]
         public async Task<ActionResult<userIdDTO>> Post([FromBody] userRegisterDTO userRegisterDTO)
         {
-           int passward = _UserService.CheckPasword(userRegisterDTO.Password);
-           if (passward >= 2)
-          {   
                 User user = _mapper.Map<userRegisterDTO, User>(userRegisterDTO);
                 User newUser = await _UserService.CreateUser(user);
                 userIdDTO userDTO = _mapper.Map<User,userIdDTO>(newUser);
                 if (userDTO == null)
-                    return NoContent();
+                    return BadRequest("week password");
                 return Ok(userDTO);
-            }
-            else
-            {
-                return BadRequest();
-            }
         }
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public async Task Put(int id, [FromBody] userRegisterDTO userToUpdate)
+        public async Task<ActionResult<string>> Put(int id, [FromBody] userRegisterDTO userToUpdate)
         {
-            int passward = _UserService.CheckPasword(userToUpdate.Password);
-            if (passward >= 2)
-            {
                 User user = _mapper.Map<userRegisterDTO, User>(userToUpdate);
                 await _UserService.UpDateUser(id, user);
                 userIdDTO userDTO = _mapper.Map<User, userIdDTO>(user);
-                Ok(userToUpdate);
-            }
-            else
-            {
-                BadRequest();
-            }
+                if (userDTO == null)
+                    return BadRequest();
+                return Ok(userToUpdate);
+            
         }
         [HttpPost()]
         [Route("password")]
