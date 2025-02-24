@@ -26,8 +26,10 @@ namespace Repositories
             User checkEmailuser = await contextDb.Users.FirstOrDefaultAsync(user => user.Email == newUser.Email);
             if (checkEmailuser == default)
             {
+                //var res=await contextDb.Users.AddAsync(newUser);
                 await contextDb.Users.AddAsync(newUser);
                 await contextDb.SaveChangesAsync();
+                //return res- the created user with the id
                 return newUser;
             }
             else
@@ -40,7 +42,7 @@ namespace Repositories
                 User user = await contextDb.Users.FirstOrDefaultAsync(user => user.Email == email && user.Password == password);
                 return user;
         }
-        public async Task UpDateUser(int id, User userToUpdate)
+        public async Task UpDateUser(int id, User userToUpdate)//return user
         {
             userToUpdate.UserId = id;
             contextDb.Users.Update(userToUpdate);
