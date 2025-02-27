@@ -25,6 +25,10 @@ namespace Services
         {
             return await _ProductRepository.getProductById(id);
         }
+        public async Task<Product> CheckOrderSum(int id)
+        {
+            return await _ProductRepository.getProductById(id);
+        }
 
     }
 

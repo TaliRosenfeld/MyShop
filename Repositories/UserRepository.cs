@@ -21,17 +21,22 @@ namespace Repositories
             contextDb = _326774742WebApiContext;
             //_logger = logger;
         }
+
         public async Task<User> CreateUser(User newUser)
         {
             User checkEmailuser = await contextDb.Users.FirstOrDefaultAsync(user => user.Email == newUser.Email);
             if (checkEmailuser == default)
             {
-                await contextDb.Users.AddAsync(newUser);
+                var newUserWithId =await contextDb.Users.AddAsync(newUser);
                 await contextDb.SaveChangesAsync();
                 return newUser;
             }
             else
                 return null;            
+        }
+        public async Task<User> GetUserById(int id)
+        {
+           return await contextDb.Users.FirstOrDefaultAsync(user => user.UserId == id);
         }
 
         public async Task<User> GetUserToLogin(string email, string password)
@@ -40,11 +45,12 @@ namespace Repositories
                 User user = await contextDb.Users.FirstOrDefaultAsync(user => user.Email == email && user.Password == password);
                 return user;
         }
-        public async Task UpDateUser(int id, User userToUpdate)
+        public async Task<User> UpDateUser(int id, User userToUpdate)
         {
             userToUpdate.UserId = id;
             contextDb.Users.Update(userToUpdate);
             await contextDb.SaveChangesAsync();
+            return userToUpdate;
         }
        
 

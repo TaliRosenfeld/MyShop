@@ -13,6 +13,8 @@ namespace MyShop
             CreateMap<Category,categoryDTO>();
             //order
             CreateMap<Order, orderDTO>();
+            CreateMap<Order, orderPostDTO>();
+            CreateMap<Order, orderNewDTO>();
             //CreateMap<OrderItem, orderItemDTO>();
             CreateMap<orderItemsDTO, OrderItem>();
             CreateMap<orderPostDTO, Order>();

@@ -9,4 +9,5 @@ namespace DTO
 {
         public record orderDTO(DateTime? OrderDate,double? OrderSum, ICollection<orderItemsDTO> orderItems,string UserFirstName,string UserLastName);
         public record orderPostDTO(int UserId,DateTime? OrderDate, double? OrderSum , ICollection<orderItemsDTO> orderItems);
+        public record orderNewDTO(int? OrderId, string UserFirstName, DateTime? OrderDate, double? OrderSum);
 }

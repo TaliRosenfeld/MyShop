@@ -11,6 +11,7 @@ namespace Repositories
     public class OrderRepository : IOrderRepository
     {
         _326774742WebApiContext contextDb;
+            
         public OrderRepository(_326774742WebApiContext contextDb)
         {
             this.contextDb = contextDb;
@@ -23,9 +24,10 @@ namespace Repositories
         }
         public async Task<Order> GetOrderById(int id)
         {
-            Order order = await contextDb.Orders.Include(o=>o.User).FirstOrDefaultAsync(order => order.OrderId == id);
-            return order;
+            return await contextDb.Orders.Include(o=>o.User).FirstOrDefaultAsync(order => order.OrderId == id);
+             
         }
+
 
     }
 }

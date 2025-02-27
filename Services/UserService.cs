@@ -18,7 +18,10 @@ namespace Services
         {
             _UserRepository = UserRepository;
         }
-        
+        public async Task<User> GetUserById(int id)
+        {
+           return await _UserRepository.GetUserById(id);
+        }
         public async Task<User> CreateUser(User user)
         {
             if (CheckPasword(user.Password) >= 2)
@@ -32,9 +35,9 @@ namespace Services
             return null;
             
         }
-        public async Task UpDateUser(int id, User userToUpdate)
+        public async Task<User> UpDateUser(int id, User userToUpdate)
         {
-            await _UserRepository.UpDateUser(id, userToUpdate);
+            return await _UserRepository.UpDateUser(id, userToUpdate);
         }
         public int CheckPasword(string password)
         {

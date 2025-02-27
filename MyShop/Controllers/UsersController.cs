@@ -11,6 +11,7 @@ using System.Globalization;
 using DTO;
 using AutoMapper;
 using System.Reflection.Metadata.Ecma335;
+using Org.BouncyCastle.Asn1.Cmp;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MyShop.Controllers
@@ -20,7 +21,6 @@ namespace MyShop.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        
         IMapper _mapper;
         private readonly IUserService _UserService;
         public UsersController(IUserService UserService, IMapper Imapper)
@@ -28,6 +28,12 @@ namespace MyShop.Controllers
             _UserService = UserService;
             _mapper = Imapper;
         }
+        [HttpGet("{id}")]
+        public async Task<User> Get(int id)
+        {
+            return await _UserService.GetUserById(id);
+        }
+
 
         [HttpPost()]
         [Route("login")]
@@ -40,25 +46,27 @@ namespace MyShop.Controllers
             }
             else
             {
-                return BadRequest("week password"); ;
+                return BadRequest("week password");
             }
         }
-
-        // POST api/<UsersController>
+        //POST api/<UsersController>
         [HttpPost]
-        public async Task<ActionResult<userIdDTO>> Post([FromBody] userRegisterDTO userRegisterDTO)
+        public async Task<ActionResult<User>> Post([FromBody] userRegisterDTO userRegisterDTO)
         {
-                User user = _mapper.Map<userRegisterDTO, User>(userRegisterDTO);
-                User newUser = await _UserService.CreateUser(user);
-                userIdDTO userDTO = _mapper.Map<User,userIdDTO>(newUser);
-                if (userDTO == null)
-                    return BadRequest("week password");
-                return Ok(userDTO);
+            User user = _mapper.Map<userRegisterDTO, User>(userRegisterDTO);
+            User newUser = await _UserService.CreateUser(user);
+            Console.WriteLine(newUser);
+            userIdDTO userDTO = _mapper.Map<User, userIdDTO>(newUser);
+            if (newUser == null)
+                return BadRequest("week password");
+            return CreatedAtAction(nameof(Get), new { id = newUser.UserId }, newUser);
+            //return CreatedAtAction(nameof(GetResourceById), new { id = resource.Id }, resource);
         }
+
 
         // PUT api/<UsersController>/5
         [HttpPut("{id}")]
-        public async Task<ActionResult<string>> Put(int id, [FromBody] userRegisterDTO userToUpdate)
+        public async Task<ActionResult<User>> Put(int id, [FromBody] userRegisterDTO userToUpdate)
         {
                 User user = _mapper.Map<userRegisterDTO, User>(userToUpdate);
                 await _UserService.UpDateUser(id, user);

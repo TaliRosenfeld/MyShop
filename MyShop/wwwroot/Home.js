@@ -25,19 +25,19 @@ const newRegister = async () => {
             body: await JSON.stringify(newUser)
         });
         if (responsePost.status == 400) {
-            throw new error(`week password`)
+            throw (`בדוק את תקינות הנתונים שהכנסת`)
         }
         if (!responsePost.ok) {
-            throw new error(`you dont succed register:http error  status${responsePost}`)
+            throw (`you dont succed register:http error  status ${responsePost}`)
         }
         else { 
-        alert("you succed register in succed")
+            alert("you succed register in succed")
         window.location.href = "Products.html"
         }
         
     }
     catch (error) {
-        alert(`error: ${error}`)
+        alert(`newRegister error: ${error} `)
     }
     //console.log(responsePost.JSON)  
 }
@@ -64,10 +64,9 @@ const NewLogin = async () => {
             }
         });
         
-        
         if (!responsePost.ok) {
             if (responsePost.status == 204) {
-                throw new error(`the user is not found`)
+                throw (`the user is not found`)
                 //alert("ghghgh")
                 //return
             };
@@ -84,7 +83,7 @@ const NewLogin = async () => {
 
     }
     catch (error) {
-        alert(error)
+        alert(`newLogin ${error}`)
     }
 }
 
@@ -103,9 +102,7 @@ const checkPassword=async()=>{
         viewLevel(dataPost);
         }
     catch (error) {
-        alert(error)
-
-        ///
+        alert(`check Password ${error}`)
     }
 }
 

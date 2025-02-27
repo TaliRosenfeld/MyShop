@@ -20,7 +20,7 @@ const changeUser = async () => {
         });
         if (!responsePost.ok) {
             console.log(responsePost)
-            throw new error(`http error: status${responsePost.status}`)
+            throw (`http error: status${responsePost.status}`)
         }
         const saveTheChanges = responsePost.json()
         alert("השינויים נשמרו בהצלחה")

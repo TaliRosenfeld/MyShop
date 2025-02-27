@@ -43,6 +43,7 @@ namespace MyShop.Controllers
             productDTO productDTO = _mapper.Map<Product,productDTO > (product);
             return productDTO;
         }
+        
     }
 }
 
