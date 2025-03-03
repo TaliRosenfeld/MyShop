@@ -63,14 +63,17 @@ const NewLogin = async () => {
                 Password: loginUser.password
             }
         });
-        
+       
         if (!responsePost.ok) {
             if (responsePost.status == 204) {
                 throw (`the user is not found`)
                 //alert("ghghgh")
                 //return
             };
-            throw new error(`http error: status${responsePost}`)
+            if (responsePost.status == 400) {
+            throw (`בדוק את תקינות הנתונים שהכנסת`)
+            }
+            throw (`http error: status${responsePost}`)
         }
         const existUser = await responsePost.json();
         console.log(existUser.userId);
@@ -109,4 +112,7 @@ const checkPassword=async()=>{
 const viewLevel = (passwordlevel) => {
         const password = document.querySelector(".levelPassword")
         password.value = passwordlevel
-    }
+}
+const changeUser=() => {
+    window.location.href ="UserDetails.html"
+}

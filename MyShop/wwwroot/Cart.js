@@ -1,5 +1,4 @@
-﻿
-const cartList = addEventListener("load", async () => {
+﻿const cartList = addEventListener("load", async () => {
     getCart()
     document.getElementById("totalAmount").innerHTML = 0;
     document.getElementById("itemCount").innerHTML = 0;
@@ -66,7 +65,7 @@ const deleteProduct = async (product) => {
     document.getElementById("totalAmount").innerHTML = 0;
     document.getElementById("itemCount").innerHTML = 0
     document.getElementById("items").innerHTML = ''
-    window.location.href = "ShoppingBag.html"
+    window.location.href = "Products.html"
 }
 const placeOrder = () => {
     //generateDate()
@@ -86,6 +85,10 @@ const getOrderPostObj = () => {
     }
     return objOrderItem;
 }
+const deleteCartOnOrder = () => {
+    sessionStorage.setItem("cart", JSON.stringify([]))
+    window.location.href = "Products.html"
+}
 const orderPost = async () => {
     const orderPostObj = getOrderPostObj()
     try {
@@ -97,6 +100,7 @@ const orderPost = async () => {
             body: JSON.stringify(orderPostObj)
         })
         const dataPost = await responsePost.json();
+        deleteCartOnOrder()
         //console.log(dataPost)
         alert("✔ בוצעה בהצלחה " + dataPost.orderId + " הזמנה מספר")
         //sessionStorage.setItem('user', dataPost.userId)

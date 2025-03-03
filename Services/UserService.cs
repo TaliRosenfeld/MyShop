@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Logging;
 
 
 namespace Services
@@ -14,9 +15,11 @@ namespace Services
     public class UserService : IUserService
     {
         private readonly IUserRepository _UserRepository;
-        public UserService(IUserRepository UserRepository)
+        private readonly ILogger<UserService> _logger;
+        public UserService(IUserRepository UserRepository, ILogger<UserService> logger)
         {
             _UserRepository = UserRepository;
+            _logger = logger;
         }
         public async Task<User> GetUserById(int id)
         {
@@ -30,9 +33,16 @@ namespace Services
         }
         public async  Task<User> GetUserToLogin(string email, string password)
         {
-            if (CheckPasword(password) >= 2)
-                return await _UserRepository.GetUserToLogin(email, password);
-            return null;
+            
+            if (CheckPasword(password) >= 2) { 
+                
+                var user=await _UserRepository.GetUserToLogin(email, password);
+                if(user != null) { 
+                _logger.LogCritical($"login attempted with User Name , {email} and password{password}" );
+                    return user;
+              }
+            }
+           return null;
             
         }
         public async Task<User> UpDateUser(int id, User userToUpdate)

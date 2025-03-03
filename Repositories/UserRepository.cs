@@ -12,14 +12,11 @@ namespace Repositories
 {
     public class UserRepository : IUserRepository
     {
-        //private readonly ILogger<UserRepository> _logger;
         _326774742WebApiContext contextDb;
         
         public UserRepository(_326774742WebApiContext _326774742WebApiContext)
-        // ILogger<UserRepository> logger
         {
             contextDb = _326774742WebApiContext;
-            //_logger = logger;
         }
 
         public async Task<User> CreateUser(User newUser)
@@ -32,7 +29,7 @@ namespace Repositories
                 return newUser;
             }
             else
-                return null;            
+              return null;            
         }
         public async Task<User> GetUserById(int id)
         {
@@ -41,7 +38,6 @@ namespace Repositories
 
         public async Task<User> GetUserToLogin(string email, string password)
         {
-                //_logger.LogCritical($"login attempted with User Name , {email} and password{password}" );
                 User user = await contextDb.Users.FirstOrDefaultAsync(user => user.Email == email && user.Password == password);
                 return user;
         }

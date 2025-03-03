@@ -21,7 +21,7 @@ namespace MyShop
             //user
             CreateMap<userRegisterDTO, User>();
             CreateMap<User, userIdDTO>();
-            CreateMap<userRegisterWithOutPasswordDTO, userRegisterDTO>();
+            //CreateMap<userRegisterWithOutPasswordDTO, userRegisterDTO>();
         }         
     }
 }
