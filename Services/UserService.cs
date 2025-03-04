@@ -14,7 +14,7 @@ namespace Services
 {
     public class UserService : IUserService
     {
-        private readonly IUserRepository _UserRepository;//
+        private readonly IUserRepository _UserRepository;
         private readonly ILogger<UserService> _logger;
         public UserService(IUserRepository UserRepository, ILogger<UserService> logger)
         {
