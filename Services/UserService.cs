@@ -33,27 +33,44 @@ namespace Services
         }
         public async  Task<User> GetUserToLogin(string email, string password)
         {
-            
             if (CheckPasword(password) >= 2) { 
-                
                 var user=await _UserRepository.GetUserToLogin(email, password);
                 if(user != null) { 
                 _logger.LogCritical($"login attempted with User Name , {email} and password{password}" );
                     return user;
               }
+                return null;
             }
-           return null;
+            return null;
+            //throw new ConflictException();
             
         }
         public async Task<User> UpDateUser(int id, User userToUpdate)
         {
-            return await _UserRepository.UpDateUser(id, userToUpdate);
+            if (CheckPasword(userToUpdate.Password) >= 2)
+                return await _UserRepository.UpDateUser(id, userToUpdate);
+            return null;
+            
         }
         public int CheckPasword(string password)
         {
               var result = Zxcvbn.Core.EvaluatePassword(password);            
                 return result.Score;
             
+        }
+        public async Task<User> checkIfUserExist(User userToRegister)
+        {
+            return await _UserRepository.checkIfUserExist(userToRegister);
+        }
+        public async Task<User> checkIfUserCanChange(int id,User userToUpDate)
+        {
+            var UserExist = await _UserRepository.checkIfUserExist(userToUpDate);
+            if(UserExist!=null)
+                {
+                if (UserExist.UserId == id)
+                    return userToUpDate;
+            }
+            return null;
         }
     }
 }

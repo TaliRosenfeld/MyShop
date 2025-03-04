@@ -65,7 +65,7 @@ const deleteProduct = async (product) => {
     document.getElementById("totalAmount").innerHTML = 0;
     document.getElementById("itemCount").innerHTML = 0
     document.getElementById("items").innerHTML = ''
-    window.location.href = "Products.html"
+    window.location.href = "ShoppingBag.html"
 }
 const placeOrder = () => {
     //generateDate()
@@ -92,6 +92,9 @@ const deleteCartOnOrder = () => {
 const orderPost = async () => {
     const orderPostObj = getOrderPostObj()
     try {
+        if (orderPostObj.orderItems.length==0 ) {
+            throw (`אנא בחר מוצרים להוספה לעגלה`)
+        }
         const responsePost = await fetch(`api/order/`, {
             method: 'POST',
             headers: {

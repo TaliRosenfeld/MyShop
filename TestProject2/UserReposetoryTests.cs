@@ -432,7 +432,9 @@ namespace TestProject
             var Reposetory = new UserRepository(mockContext.Object);
 
             // Act & Assert
-            await Assert.ThrowsAsync<System.Exception>(async () => await Reposetory.UpDateUser(1, userToUpdate)); // תוודא שהשגיאה נזרקת
+            //await Assert.ThrowsAsync<System.Exception>(=async () =>
+            var result =  await Reposetory.UpDateUser(1, userToUpdate); // תוודא שהשגיאה נזרקת
+            Assert.Null(result);
         }
     }
 }

@@ -283,7 +283,7 @@ const addToCart = (product) => {
         document.querySelector("#ItemsCountText").innerHTML = JSON.parse(document.querySelector("#ItemsCountText").innerHTML) + 1;
     }
     else {
-        alert("אינך רשום")
+        alert("יש להכנס כמשתמש רשום לפני ביצוע הזמנה")
         window.location.href = "home.html"
     }
 
@@ -325,6 +325,9 @@ const addCategory = async (id) => {
     sessionStorage.setItem("categoryIds", JSON.stringify(categories))
     console.log(categories)
     GetproductList()
+}
+const changeUser = () => {
+    window.location.href = "UserDetails.html"
 }
 
 

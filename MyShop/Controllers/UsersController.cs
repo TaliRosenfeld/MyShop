@@ -11,7 +11,7 @@ using System.Globalization;
 using DTO;
 using AutoMapper;
 using System.Reflection.Metadata.Ecma335;
-using Org.BouncyCastle.Asn1.Cmp;
+//using Org.BouncyCastle.Asn1.Cmp;
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace MyShop.Controllers
@@ -35,7 +35,7 @@ namespace MyShop.Controllers
         }
 
 
-        [HttpPost()]
+        [HttpPost]
         [Route("login")]
         public async Task<ActionResult<User>> Postlogin([FromQuery] userLoginIdDTO userLoginIdDTO)
         {
@@ -44,16 +44,18 @@ namespace MyShop.Controllers
             {
                 return Ok(SuccesGetUserToLogin);
             }
-            else
-            {
-                return BadRequest("week password");
-            }
+            return NotFound();
         }
         //POST api/<UsersController>
         [HttpPost]
         public async Task<ActionResult<User>> Post([FromBody] userRegisterDTO userRegisterDTO)
         {
             User user = _mapper.Map<userRegisterDTO, User>(userRegisterDTO);
+            User UserExist = await _UserService.checkIfUserExist(user);
+            if (UserExist == null)
+            {
+                return Conflict("User already exist");
+            }
             User newUser = await _UserService.CreateUser(user);
             Console.WriteLine(newUser);
             userIdDTO userDTO = _mapper.Map<User, userIdDTO>(newUser);
@@ -68,15 +70,22 @@ namespace MyShop.Controllers
         [HttpPut("{id}")]
         public async Task<ActionResult<User>> Put(int id, [FromBody] userRegisterDTO userToUpdate)
         {
-                User user = _mapper.Map<userRegisterDTO, User>(userToUpdate);
+            User user = _mapper.Map<userRegisterDTO, User>(userToUpdate);
+            user.UserId= id;
+            User UserCanChange = await _UserService.checkIfUserCanChange(id, user);
+            if(UserCanChange != null)
+            {
                 await _UserService.UpDateUser(id, user);
                 userIdDTO userDTO = _mapper.Map<User, userIdDTO>(user);
                 if (userDTO == null)
                     return BadRequest();
                 return Ok(userToUpdate);
+            }
+            return Conflict("User already exist");
+                
             
         }
-        [HttpPost()]
+        [HttpPost]
         [Route("password")]
         public ActionResult<int> PostPassord([FromBody] string password)
         {
