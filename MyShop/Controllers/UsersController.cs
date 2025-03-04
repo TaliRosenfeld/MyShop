@@ -46,7 +46,7 @@ namespace MyShop.Controllers
             }
             return NotFound();
         }
-        //POST api/<UsersController>
+
         [HttpPost]
         public async Task<ActionResult<User>> Post([FromBody] userRegisterDTO userRegisterDTO)
         {
@@ -62,7 +62,6 @@ namespace MyShop.Controllers
             if (newUser == null)
                 return BadRequest("week password");
             return CreatedAtAction(nameof(Get), new { id = newUser.UserId }, newUser);
-            //return CreatedAtAction(nameof(GetResourceById), new { id = resource.Id }, resource);
         }
 
 
