@@ -95,7 +95,6 @@ const NewLogin = async () => {
             };
         const existUser = await responsePost.json();
         console.log(existUser.userId);
-        //existUser.firstName
         sessionStorage.setItem('user', existUser.userId)
         sessionStorage.setItem("cart", JSON.stringify([]))
         sessionStorage.setItem("categoryIds", JSON.stringify([]))
