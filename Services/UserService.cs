@@ -34,6 +34,10 @@ namespace Services
         public async  Task<User> GetUserToLogin(string email, string password)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+            /////
+>>>>>>> f6b2fd581639cdc490876dd6da106ecc4fcfab8a
 =======
             /////
 >>>>>>> f6b2fd581639cdc490876dd6da106ecc4fcfab8a
