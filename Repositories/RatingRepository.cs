@@ -23,6 +23,7 @@ namespace Repositories
         {
             //await _214416448WebApiContext.Ratings.AddAsync(rating);
             //await _214416448WebApiContext.SaveChangesAsync();
+            /////
 
 
             string query = "INSERT INTO RATING(HOST, METHOD,PATH, REFERER, USER_AGENT,Record_Date)" +
