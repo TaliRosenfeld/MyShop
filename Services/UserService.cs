@@ -33,6 +33,10 @@ namespace Services
         }
         public async  Task<User> GetUserToLogin(string email, string password)
         {
+<<<<<<< HEAD
+=======
+            /////
+>>>>>>> f6b2fd581639cdc490876dd6da106ecc4fcfab8a
             if (CheckPasword(password) >= 2) { 
                 var user=await _UserRepository.GetUserToLogin(email, password);
                 if(user != null) { 
