@@ -22,17 +22,10 @@ namespace Repositories
 
         public async Task<User> CreateUser(User newUser)
         {
-            //User checkEmailuser = await contextDb.Users.FirstOrDefaultAsync(user => user.Email == newUser.Email);
-            //if (checkEmailuser == default)
-            //{
                 var newUserWithId =await contextDb.Users.AddAsync(newUser);
                 await contextDb.SaveChangesAsync();
                 newUser.UserId = newUserWithId.Entity.UserId;   
                 return newUser;
-            //}
-            //else
-              //return null;
-            //throw new NotImplementedException();
         }
         public async Task<User> GetUserById(int id)
         {
@@ -41,6 +34,7 @@ namespace Repositories
 
         public async Task<User> GetUserToLogin(string email, string password)
         {
+            /////
             User user = await contextDb.Users.FirstOrDefaultAsync(user => user.Email == email && user.Password == password);
                 return user;
             

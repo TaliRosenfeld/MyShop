@@ -80,7 +80,6 @@ namespace TestProject
         {
             // Act
             var retrievedUser = await _reposetory.GetUserById(-1); // מזהה לא קיים
-
             // Assert
             Assert.Null(retrievedUser);
         }

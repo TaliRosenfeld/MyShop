@@ -35,7 +35,7 @@ namespace MyShop.Controllers
             Product product = await _ProductService.getProductById(id);
             productDTO productDTO = _mapper.Map<Product,productDTO > (product);
             return productDTO;
-        }
+        }/////
         
     }
 }

@@ -149,9 +149,6 @@ const changeUser = async () => {
             },
             body: await JSON.stringify(DetaisChangeUser)
         });
-        //if (responsePost.status == 204) {
-        //    throw (`the user is not found`)
-        //};
         
         if (!responsePost.ok) {
             if (responsePost.status == 409) {
@@ -167,9 +164,6 @@ const changeUser = async () => {
             console.log(responsePost)
             throw (`http error: status${responsePost.status}`)
         }
-        //if (responsePost.status == 400) {
-        //    throw (`you need to login or register`)
-        //}
         const saveTheChanges = responsePost.json()
         alert("השינויים נשמרו בהצלחה")
         window.location.href = "Products.html"
