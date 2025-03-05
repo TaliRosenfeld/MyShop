@@ -21,11 +21,9 @@ const getCartFromDB = async (productId, quantity) => {
             },
         })
         const dataGet = await responseGet.json();
-        //console.log(dataGet)
         await showProduct(dataGet, quantity)
     }
     catch (error) {
-        //console.log(error)
         alert(error)
     }
 }
@@ -59,7 +57,6 @@ const deleteProduct = async (product) => {
             }
             return item
         })
-        //console.log("ddddd" + cart)
     }
     sessionStorage.setItem("cart", JSON.stringify(cart))
     document.getElementById("totalAmount").innerHTML = 0;
@@ -68,16 +65,13 @@ const deleteProduct = async (product) => {
     window.location.href = "ShoppingBag.html"
 }
 const placeOrder = () => {
-    //generateDate()
     orderPost()
 }
 const getOrderPostObj = () => {
-    //var currentDate = generateDate()
-    //alert(currentDate)
     objOrderItem = {
         "userId": JSON.parse(sessionStorage.getItem('user')),
         "orderDate": new Date(),
-        "orderSum": 200.5,//JSON.parse(document.getElementById("totalAmount").innerHTML),
+        "orderSum": JSON.parse(document.getElementById("totalAmount").innerHTML),
         "orderItems": JSON.parse(sessionStorage.getItem("cart")),
         "userFirstName": "string",
         "userLastName": "string"
@@ -104,33 +98,11 @@ const orderPost = async () => {
         })
         const dataPost = await responsePost.json();
         deleteCartOnOrder()
-        //console.log(dataPost)
         alert("✔ בוצעה בהצלחה " + dataPost.orderId + " הזמנה מספר")
-        //sessionStorage.setItem('user', dataPost.userId)
-        //if (!responsePut.ok)
-        //    alert("משהו השתבש")
-        //else
-        //    alert("aaaaaaaaaaaaaaa ")
     }
     catch (error) {
-        //console.log(error)
+
         alert(error)
 
     }
 }
-//const generateDate = () => {
-//    //const date = new DateTime();
-
-//    //let day = date.getDate();
-//    //let month = date.getMonth() + 1;
-//    //let year = date.getFullYear();
-//    //let currentDate = `${year}-${month}-${day}`;
-//    //console.log("currentDate    " + currentDate)
-//    /*return currentDate.toString()*/
-//    //DateTime dt = new DateTime(); 
-
-//    var currentTime = new Date();
-//    const currentDate = `${currentTime.getFullYear()}-${currentTime.getMonth()}-${currentTime.getDay()}`;
-//    return currentDate
-//    //console.log("lllll       " + `${currentTime.getFullYear()}-${currentTime.getMonth()}-${currentTime.getDay()}`)
-//}

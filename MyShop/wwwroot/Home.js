@@ -42,13 +42,11 @@ const newRegister = async () => {
         else { 
             alert("you succed register in succed")
         window.location.href = "Products.html"
-        }
-        
+        } 
     }
     catch (error) {
         alert(error)
-    }
-    //console.log(responsePost.JSON)  
+    } 
 }
 
 const getDetaisLogin = () => {
@@ -79,9 +77,6 @@ const NewLogin = async () => {
             alert(errorText)
         }
         if (!responsePost.ok) {
-            if (responsePost.status == 409) {
-                throw (`המשתמש כבר קיים במערכת`)
-            }
             if (responsePost.status == 404) {
                 throw (` לא נמצא משתמש עם הסיסמא והמייל הנתונים`)
             }
