@@ -45,6 +45,8 @@ const buildUrl = (filterItems) => {
     return url;
 }
 const GetproductList = async () => {
+    //window.location.href("
+    //https://www.google.com/search?q=translate&rlz=1C1GCEU_enIL1172&oq=translate&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARBFGDwyBggCEEUYPNIBCDI1MzJqMGo3qAIAsAIA&sourceid=chrome&ie=UTF-8")
     const filterItems = getAllFilter()
     let url = buildUrl(filterItems);
 

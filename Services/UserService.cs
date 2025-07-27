@@ -25,22 +25,36 @@ namespace Services
         {
            return await _UserRepository.GetUserById(id);
         }
+        private static string GenerateSalt(int size = 32)
+        {
+            var rng = new System.Security.Cryptography.RNGCryptoServiceProvider();
+            var saltBytes = new byte[size];
+            rng.GetBytes(saltBytes);
+            return Convert.ToBase64String(saltBytes);
+        }
+
+        private static string HashPassword(string password, string salt)
+        {
+            var sha256 = System.Security.Cryptography.SHA256.Create();
+            var combined = Encoding.UTF8.GetBytes(password + salt);
+            var hash = sha256.ComputeHash(combined);
+            return Convert.ToBase64String(hash);
+        }
+
         public async Task<User> CreateUser(User user)
         {
             if (CheckPasword(user.Password) >= 2)
+            {
+                string salt = GenerateSalt();
+                string hash = HashPassword(user.Password, salt);
+                user.Password = hash;
+                user.Salt = salt;
                 return await _UserRepository.CreateUser(user);
+            }
             return null;
         }
         public async  Task<User> GetUserToLogin(string email, string password)
         {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-            /////
->>>>>>> f6b2fd581639cdc490876dd6da106ecc4fcfab8a
-=======
-            /////
->>>>>>> f6b2fd581639cdc490876dd6da106ecc4fcfab8a
             if (CheckPasword(password) >= 2) { 
                 var user=await _UserRepository.GetUserToLogin(email, password);
                 if(user != null) { 

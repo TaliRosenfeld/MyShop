@@ -26,7 +26,6 @@ namespace MyShop
                 httpContext.Response.StatusCode = 500;
                 await httpContext.Response.WriteAsync("Internal Error In Server");
             }
-
         }
     }
 

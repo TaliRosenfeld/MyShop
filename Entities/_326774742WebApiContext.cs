@@ -1,9 +1,10 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace Repositories;
+namespace Entities;
 
 public partial class _326774742WebApiContext : DbContext
 {

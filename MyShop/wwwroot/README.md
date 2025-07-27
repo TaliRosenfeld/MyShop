@@ -63,6 +63,23 @@ The project follows clean code principles to ensure the codebase is maintainable
 - **AutoMapper**
 - **Swagger**
 
+## Security
+- **Hashing and Salting**: User passwords are securely stored using hashing and salting techniques. This approach is implemented to protect against XSS and other common security threats.
+
+## Performance
+- **Distributed Caching**: To ensure high performance and fast response times for common queries, the project uses `IDistributedCache` with a Redis backend.
+- **Redis Container**: Redis is run as a Docker container, making it easy to set up and scale the cache layer.
+- **Dockerized Deployment**: The entire project, including the API and Redis, can be run using Docker for a consistent and portable development and production environment.
+
+### Running with Docker
+To run the project and its dependencies using Docker, use the provided `docker-compose.yml` file:
+
+```sh
+docker-compose up --build
+```
+
+This will start the API and a Redis container automatically.
+
 ## Contributing
 We welcome contributions to the project. Please fork the repository and submit pull requests.
 
