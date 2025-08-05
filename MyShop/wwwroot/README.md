@@ -87,5 +87,5 @@ We welcome contributions to the project. Please fork the repository and submit p
 This project is licensed under the MIT License.
 
 ## Contact
-For any questions or inquiries, please contact [Tali Rosenfeld](email:38326774742@mby.co.il,phone:0533106831).
+For any questions or inquiries, please contact [Tali Rosenfeld](email:tali106831@gmail.com,phone:0533106831).
 
